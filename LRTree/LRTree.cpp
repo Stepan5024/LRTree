@@ -1,7 +1,14 @@
-﻿// LRTree.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// ВЫполнили студенты группы М3О-219Бк-20 Бокарев С., Катвалян А.
 //
 
 #include <iostream>
+
+typedef int Data;
+typedef struct Node {
+    Data data;
+    struct Node* left;
+    struct Node* right;
+}Node;
 
 int main()
 {
