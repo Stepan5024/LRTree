@@ -1,7 +1,7 @@
 ﻿// ВЫполнили студенты группы М3О-219Бк-20 Бокарев С., Катвалян А.
 //
 
-#include <iostream>
+#include <stdlib.h>
 #include <stdio.h>
 
 typedef int Data;
@@ -19,7 +19,7 @@ void print(Node* tree);
 
 int main()
 {
-    Node
+    /*Node
         one = { 1, NULL, NULL },
         two = { 2, NULL, NULL },
         three = { 3, NULL, NULL },
@@ -28,21 +28,23 @@ int main()
         six = { 6, NULL, NULL },
         seven = { 7, NULL, NULL },
         eight = { 8, NULL, NULL },
-        nine = { 9, NULL, NULL };
+        nine = { 9, NULL, NULL };*/
 
     Node* tree = NULL; // указатель на корень
-    tree = &seven;
+    print(tree);
+    Data test_data[] = { 7, 3, 2, 1, 9, 5, 4, 6 };
+    for (size_t i = 0; i < sizeof(test_data) / sizeof(test_data[0]); i++) {
+        tree = tree_add(tree, test_data[i]);
+        print(tree);
+    }
+    /*tree = &seven;
     seven.left = &three;
     seven.right = &nine;
     three.left = &two;
     two.left = &one;
     three.right = &five;
-    nine.left = &eight;
+    nine.left = &eight;*/
 
-
-    tree = tree_add(tree, 7);
-
-    print(tree);
 
 }
 
@@ -60,7 +62,20 @@ void print(Node * tree) {
     tree_print(tree);
     printf("\n");
 }
-Node* tree_add(Node* tree, Data x) {
+Node* tree_add(Node* tree, Data d) {
+    // дерева нет и это первый узел
+    if (tree == NULL) {
+        Node * t = (struct Node*)malloc(sizeof(Node));
+        t->data = d;
+        t->left = t->right = NULL;
+        return t;
+    }
+    if (d < tree->data) {
+        tree-> left = tree_add(tree->left, d);
+    }
+    if (d > tree->data) {
+        tree->right = tree_add(tree->right, d);
+    }
     return tree;
 }
 Node* deleteData(Node* tree, Data x) {
